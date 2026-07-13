@@ -1,0 +1,172 @@
+:root {
+    --bg-dark: #0a0b10;
+    --card-bg: #11131f;
+    --primary: #00e676;
+    --accent: #00b0ff;
+    --text: #ffffff;
+    --text-muted: #8a99ad;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 50px 20px;
+}
+
+/* HERO SECTION */
+.hero {
+    text-align: center;
+    background: radial-gradient(circle at top, #161b33 0%, #0a0b10 70%);
+    border-bottom: 1px solid #1c2035;
+    padding: 100px 0;
+}
+
+.logo {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.thunder { color: #ffd600; filter: drop-shadow(0 0 15px #ffd600); }
+.shield { color: var(--accent); margin-left: -15px; font-size: 2.8rem; opacity: 0.8; filter: drop-shadow(0 0 15px var(--accent)); }
+
+h1 {
+    font-size: 3.5rem;
+    letter-spacing: 3px;
+    margin: 0;
+    font-weight: 800;
+}
+
+h1 span { color: var(--primary); text-shadow: 0 0 20px rgba(0, 230, 118, 0.4); }
+
+.tagline {
+    color: var(--text-muted);
+    font-size: 1.25rem;
+    margin: 15px 0 35px;
+}
+
+.stats-box {
+    display: inline-flex;
+    background: rgba(0, 230, 118, 0.06);
+    border: 1px solid rgba(0, 230, 118, 0.3);
+    padding: 12px 25px;
+    border-radius: 50px;
+    margin-bottom: 40px;
+}
+
+.stat { font-weight: 600; font-size: 1rem; color: #e2e8f0; letter-spacing: 0.5px; }
+.stat i { color: var(--primary); margin-right: 8px; }
+
+.download-btn {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--primary) 0%, #00c853 100%);
+    color: #050608;
+    font-weight: 700;
+    font-size: 1.3rem;
+    padding: 20px 45px;
+    border-radius: 8px;
+    text-decoration: none;
+    box-shadow: 0 0 30px rgba(0, 230, 118, 0.3);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.download-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 45px rgba(0, 230, 118, 0.6);
+    color: #000;
+}
+
+/* WHY WINZYPACK SECTION */
+.why-winzy {
+    text-align: center;
+    border-bottom: 1px solid #1c2035;
+    padding-bottom: 60px;
+}
+
+.section-desc {
+    color: var(--text-muted);
+    max-width: 750px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+    font-size: 1.1rem;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    text-align: left;
+}
+
+.benefit-item {
+    background: rgba(255,255,255,0.02);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 3px solid var(--accent);
+}
+
+.benefit-item i { font-size: 1.8rem; margin-bottom: 10px; display: block; }
+.benefit-item h4 { margin: 0 0 8px 0; font-size: 1.15rem; color: #fff; }
+.benefit-item p { margin: 0; color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; }
+.text-primary { color: var(--primary) !important; }
+.text-accent { color: var(--accent) !important; }
+.text-success { color: #00e5ff !important; }
+
+/* FEATURES */
+h2 { text-align: center; font-size: 2.2rem; margin-bottom: 40px; font-weight: 700; }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid #1c2035;
+    padding: 35px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.card:hover { 
+    border-color: var(--accent); 
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 176, 255, 0.1);
+}
+
+.card-icon { font-size: 2.5rem; margin-bottom: 20px; color: var(--accent); }
+.card h3 { margin: 0 0 12px 0; font-size: 1.4rem; font-weight: 600; }
+.card p { color: var(--text-muted); line-height: 1.6; margin: 0; font-size: 0.95rem; }
+
+/* SAFETY */
+.safety-box {
+    background: rgba(239, 68, 68, 0.03);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    padding: 35px;
+    border-radius: 12px;
+    margin-top: 40px;
+}
+
+.safety-box h3 { color: #ef4444; margin-top: 0; font-size: 1.5rem; font-weight: 700; }
+.safety-box p { color: #e2e8f0; line-height: 1.6; }
+
+ul { padding-left: 20px; color: var(--text-muted); }
+li { margin-bottom: 15px; line-height: 1.6; font-size: 0.95rem; }
+li strong { color: #fff; }
+
+footer {
+    text-align: center;
+    padding: 50px 0;
+    color: #3f4859;
+    font-size: 0.9rem;
+    border-top: 1px solid #1c2035;
+    margin-top: 40px;
+}
