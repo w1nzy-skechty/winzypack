@@ -3,74 +3,288 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WinzyPack - Safe & Enhanced</title>
+    <title>WinzyPack | MAX ENGINE</title>
     <style>
+        /* --- Rrënja dhe Stilet Globale --- */
+        :root {
+            --bg-color: #050a12;
+            --primary-neon: #00ff88;
+            --secondary-neon: #00bfff;
+            --discord-color: #5865F2;
+            --box-bg: rgba(11, 28, 46, 0.6);
+            --border-glow: 0 0 15px rgba(0, 255, 136, 0.5);
+            --text-shadow: 0 0 5px rgba(0, 255, 136, 0.8);
+            --font-main: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
-            background-color: #0b1c2e;
-            color: white;
-            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-color);
+            /* Sfondi "Cool" - Një rrjetë dixhitale e lehtë */
+            background-image: 
+                linear-gradient(to right, rgba(0, 255, 136, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 255, 136, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            color: #fff;
+            font-family: var(--font-main);
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             min-height: 100vh;
-            margin: 0;
+            overflow-x: hidden;
             padding: 20px;
         }
+
+        /* Efekti i dritës në sfond (një rreth i madh blu) */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 191, 255, 0.1) 0%, rgba(5, 10, 18, 0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
         .main-container {
-            background: rgba(11, 28, 46, 0.85);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-            border: 1px solid #00ff88;
-            max-width: 600px;
             width: 100%;
+            max-width: 800px;
+            perspective: 1000px; /* Për efektin 3D */
+        }
+
+        /* --- Header --- */
+        header {
             text-align: center;
+            margin-bottom: 50px;
+            transform: rotateX(5deg); /* Pak animacion 3D statik */
+            animation: floatHeader 4s ease-in-out infinite;
         }
-        h1 { color: #00ff88; margin-bottom: 5px; text-transform: uppercase; text-shadow: 0 0 10px #00ff88; }
-        .subtitle { color: #888; margin-bottom: 30px; letter-spacing: 2px; }
-        .safety-box {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 10px;
+
+        @keyframes floatHeader {
+            0%, 100% { transform: translateY(0) rotateX(5deg); }
+            50% { transform: translateY(-10px) rotateX(5deg); }
+        }
+
+        h1 {
+            color: var(--primary-neon);
+            font-size: 4rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-shadow: var(--text-shadow), 0 0 20px rgba(0, 255, 136, 0.4);
+            margin-bottom: 5px;
+            font-weight: 900;
+        }
+
+        .subtitle {
+            color: var(--secondary-neon);
+            font-size: 1.2rem;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+
+        /* --- Kutitë e Informacionit (Glassmorphism) --- */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
             margin-bottom: 30px;
-            text-align: left;
-            border-left: 4px solid #00bfff;
         }
-        .button-row { display: flex; gap: 15px; margin-top: 15px; }
-        .styled-btn {
-            flex: 1;
-            padding: 15px;
-            border-radius: 10px;
+
+        .info-box {
+            background: var(--box-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+            transition: 0.4s;
+            transform-style: preserve-3d;
+        }
+
+        .info-box:hover {
+            border-color: var(--primary-neon);
+            box-shadow: var(--border-glow);
+            transform: translateY(-5px) translateZ(10px);
+        }
+
+        /* Korniza e animuar në cep (një detaj "cool") */
+        .info-box::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px;
+            width: 30px; height: 30px;
+            border-top: 2px solid var(--primary-neon);
+            border-left: 2px solid var(--primary-neon);
+            border-radius: 10px 0 0 0;
+        }
+
+        .info-box h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .safety-box h3 { color: var(--primary-neon); }
+        .discord-box h3 { color: var(--discord-color); }
+
+        .info-box p {
+            font-size: 0.9rem;
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        /* Ikona e vogël e animuar "Loading" te safety */
+        .status-icon {
+            width: 10px; height: 10px;
+            background-color: var(--primary-neon);
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 10px var(--primary-neon);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 255, 136, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0); }
+        }
+
+        /* --- Butoni Discord --- */
+        .discord-box {
+            grid-column: 1 / -1; /* E merr gjithë gjerësinë */
+            text-align: center;
+            border-left-color: var(--discord-color);
+        }
+
+        .discord-box::before {
+            border-color: var(--discord-color);
+        }
+
+        .btn-discord {
+            display: inline-block;
+            background: linear-gradient(45deg, #5865F2, #4752C4);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
-            color: #000;
-            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             transition: 0.3s;
+            border: none;
+            margin-top: 10px;
         }
-        .styled-btn:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 0 10px rgba(255,255,255,0.2); }
-        .btn-discord { background-color: #5865F2; color: white; display: block; margin-bottom: 15px; }
-        .btn-v1 { background-color: #00bfff; }
-        .btn-v2 { background-color: #00ff88; }
+
+        .btn-discord:hover {
+            box-shadow: 0 0 20px rgba(88, 101, 242, 0.6);
+            transform: scale(1.05);
+        }
+
+        /* --- Rreshti i Shkarkimit (Me kënde të prera) --- */
+        .download-row {
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .btn-dl {
+            flex: 1;
+            padding: 25px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #050a12; /* E zezë për kontrast */
+            position: relative;
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%); /* Forma "Cool" e prerë */
+            transition: 0.3s;
+            border: none;
+            overflow: hidden;
+        }
+
+        /* Efekti i shkëlqimit që lëviz mbi butona */
+        .btn-dl::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-dl:hover::after { left: 100%; }
+        .btn-dl:hover { transform: translateY(-3px); filter: brightness(1.1); }
+
+        .btn-v1 { 
+            background: var(--secondary-neon); 
+            box-shadow: 0 0 15px rgba(0, 191, 255, 0.4);
+        }
+        .btn-v2 { 
+            background: var(--primary-neon); 
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+        }
+
+        /* --- Footer i vogël --- */
+        footer.final-note {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 0.7rem;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* --- Responsive (Për celularë) --- */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.5rem; }
+            .subtitle { font-size: 0.9rem; letter-spacing: 4px; }
+            .info-grid { grid-template-columns: 1fr; }
+            .download-row { flex-direction: column; }
+            .btn-dl { clip-path: none; border-radius: 10px; } /* Heq formën e prerë në celular për lexim }
+        }
     </style>
 </head>
 <body>
 
     <div class="main-container">
-        <h1>WinzyPack</h1>
-        <div class="subtitle">Safe & Enhanced</div>
+        <header>
+            <h1>WinzyPack</h1>
+            <div class="subtitle">MAX ENGINE OPTIMIZER</div>
+        </header>
 
-        <div class="safety-box">
-            <h3 style="color:#00bfff; margin-top:0;">🔐 SAFETY & TRANSPARENCY</h3>
-            <p style="font-size: 14px; color: #ccc;">WinzyPack është krijuar për entuziastët e PC. Kodi është i pastër, pa asnjë lloj malueri. Çdo optimizim bëhet me lejen tuaj. Për mbështetje dhe verifikim, bashkohuni në Discord tonë.</p>
+        <div class="info-grid">
+            <div class="info-box safety-box">
+                <h3><span class="status-icon"></span> CORE SAFETY</h3>
+                <p>Code verified by community. Zero hidden processes, spyware, or malicious agents. Your system integrity is our priority.</p>
+                <p><i>Status: <span style="color:var(--primary-neon)">ALL SYSTEMS NOMINAL</span></i></p>
+            </div>
+
+            <div class="info-box discord-box">
+                <h3>💬 LIVE COMMAND CENTER</h3>
+                <p>Need support, have questions, or want to verify source code? Join our elite Discord server for real-time assistance.</p>
+                <a href="https://discord.gg/x4XRPfsjp" class="btn-discord">JOIN DISCORD</a>
+            </div>
         </div>
 
-        <a href="https://discord.gg/x4XRPfsjp" class="styled-btn btn-discord">JOIN MY DISCORD</a>
-
-        <div class="button-row">
-            <a href="https://drive.google.com/file/d/1xj95zFFf0zqx_bjt2fsGvaXdW8pkzdVp/view?usp=drive_link" class="styled-btn btn-v1">DOWNLOAD V1</a>
-            <a href="https://drive.google.com/file/d/1Ak3DyagI2R7mn747Hr1h6vr5yZzVOeGH/view?usp=drive_link" class="styled-btn btn-v2">DOWNLOAD V2</a>
+        <div class="download-row">
+            <a href="https://drive.google.com/file/d/1xj95zFFf0zqx_bjt2fsGvaXdW8pkzdVp/view?usp=drive_link" class="btn-dl btn-v1">DOWNLOAD V1</a>
+            <a href="https://drive.google.com/file/d/1Ak3DyagI2R7mn747Hr1h6vr5yZzVOeGH/view?usp=drive_link" class="btn-dl btn-v2">DOWNLOAD V2</a>
         </div>
+
+        <footer class="final-note">
+            WINZYPACK // BUILT FOR ENTHUSIASTS // v3.0-QUANTUM
+        </footer>
     </div>
 
 </body>
